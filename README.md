@@ -4,6 +4,8 @@ The current Foodrop mobile app is built with React Native and Expo. React Native
 - faster development cycle due to Expo features like hot-reloading within iOS and Android simulators/devices
 - FAST
 
+In conclusion, please learn how to use Expo. Now let's build.
+
 # Quickstart
 Fastest way to run the app.
 
