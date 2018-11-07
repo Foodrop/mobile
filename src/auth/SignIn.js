@@ -44,7 +44,6 @@ class SignIn extends Component<{}> {
   }
   
   render() {
-    const { fontsLoaded } = this.state
     const { auth: {
       signInErrorMessage,
       isAuthenticating,
@@ -61,14 +60,14 @@ class SignIn extends Component<{}> {
           />
         </View>
         <Text style={[styles.greeting]}>
-          Welcome back,
+          Sign In
         </Text>
         <Text style={[styles.greeting2]}>
-          Let's eat together.
+          Let's help you order food.
         </Text>
         <View style={styles.inputContainer}>
           <Input
-            placeholder="User Name"
+            placeholder="Phone Number"
             type='username'
             onChangeText={this.onChangeText}
             value={this.state.username}

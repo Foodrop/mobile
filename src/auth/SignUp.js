@@ -23,8 +23,6 @@ import Button from '../components/Button'
 const initialState = {
   username: '',
   password: '',
-  email: '',
-  phone_number: '',
   authCode: ''
 }
 
@@ -38,8 +36,8 @@ class SignUp extends Component<{}> {
   }
 
   signUp() {
-    const { username, password, email, phone_number } = this.state
-    this.props.dispatchCreateUser(username, password, email, phone_number)
+    const { username, password } = this.state
+    this.props.dispatchCreateUser(username, password)
   }
 
   confirm() {
@@ -61,6 +59,10 @@ class SignUp extends Component<{}> {
       signUpError,
       signUpErrorMessage
     }} = this.props
+    // let user = this.props.auth.user
+    // if ( Object.keys(user).length === 0 && user.constructor === Object) {
+    //   console.log('empty');
+    // }
     return (
       <View style={styles.container}>
         <View style={styles.heading}>
@@ -71,23 +73,17 @@ class SignUp extends Component<{}> {
           />
         </View>
         <Text style={styles.greeting}>
-          Welcome,
+          Sign Up
         </Text>
         <Text style={styles.greeting2}>
-          Let's make an account for you.
+          Let's get you started.
         </Text>
         <View style={styles.inputContainer}>
           <Input
-            value={this.state.username}
-            placeholder="User Name"
+            placeholder="Phone Number"
             type='username'
             onChangeText={this.onChangeText}
-          />
-          <Input
-            value={this.state.email}
-            placeholder="Email"
-            type='email'
-            onChangeText={this.onChangeText}
+            value={this.state.username}
           />
           <Input
             value={this.state.password}
@@ -96,13 +92,7 @@ class SignUp extends Component<{}> {
             type='password'
             onChangeText={this.onChangeText}
           />
-          <Input
-            placeholder="Phone Number"
-            type='phone_number'
-            keyboardType='numeric'
-            onChangeText={this.onChangeText}
-            value={this.state.phone_number}
-          />
+
         </View>
         <Button
           title='Sign Up'
@@ -143,7 +133,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   dispatchConfirmUser: (username, authCode) => confirmUserSignUp(username, authCode),
-  dispatchCreateUser: (username, password, email, phone_number) => createUser(username, password, email, phone_number)
+  dispatchCreateUser: (username, password) => createUser(username, password)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp)

@@ -39,23 +39,18 @@ function signUpFailure(err) {
   }
 }
 
-export function createUser(username, password, email, phone_number) {
+export function createUser(username, password) {
   return (dispatch) => {
     dispatch(signUp())
-    let phone
-    const firstTwoDigits = phone_number.substring(0, 2)
+    const firstTwoDigits = username.substring(0, 2)
     if (firstTwoDigits === '+1') {
-      phone = phone_number
+      username = username
     } else {
-      phone = '+1' + phone_number
+      username = '+1' + username
     }
     Auth.signUp({
       username,
       password,
-      attributes: {
-        email,
-        phone_number: phone
-      }
     })
     .then(data => {
       console.log('data from signUp: ', data)
@@ -64,6 +59,9 @@ export function createUser(username, password, email, phone_number) {
     })
     .catch(err => {
       console.log('error signing up: ', err)
+      if ("1" == err.message.substring(0, 1)) {
+        err.message = "Password must have length greater than or equal to 6"
+      }
       dispatch(signUpFailure(err))
     });
   }
@@ -160,15 +158,11 @@ function confirmLoginFailure() {
 }
 
 export function confirmUserSignUp(username, authCode) {
-  return (dispatch) => {
-    dispatch(confirmSignUp())
+  return (dispatch, getState) => {
     Auth.confirmSignUp(username, authCode)
       .then(data => {
         console.log('data from confirmSignUp: ', data)
         dispatch(confirmSignUpSuccess())
-        setTimeout(() => {
-          Alert.alert('Successfully Signed Up!', 'Please Sign')
-        }, 0)
       })
       .catch(err => {
         console.log('error signing up: ', err)

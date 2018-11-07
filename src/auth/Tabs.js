@@ -41,6 +41,7 @@ const routes = {
 }
 
 const routeConfig = {
+  initialRouteName: 'SignIn',
   tabBarPosition: 'bottom',
   tabBarOptions: {
     showLabel: true,
@@ -57,5 +58,13 @@ const routeConfig = {
     },
   }
 }
+const BottomTab = createBottomTabNavigator(routes, routeConfig)
 
-export default createBottomTabNavigator(routes, routeConfig)
+class Tab extends React.Component {
+  render() {
+    return(
+      <BottomTab/>
+    )
+  }
+}
+export default Tab
