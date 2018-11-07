@@ -24,3 +24,4 @@ expo start
 
 5. The rest is history.
 
+If you hit an error, please submit an Github Issue.
