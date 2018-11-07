@@ -34,6 +34,6 @@ expo start
 
 # Dev related info
 - ```aws-exports.js``` contains configs to AWS Cognito.
-- We've enforced MFA for all user authentication, so please register an account with your email and phone number to start developing.
+- We've enforced MFA for all user authentication, so please register an account with your email and phone number to start developing. You can make one through in the mobile app or AWS Console.
 
 If you hit an error, please submit an Github Issue.
